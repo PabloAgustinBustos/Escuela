@@ -1,7 +1,7 @@
-const { application } = require("express")
 const express = require("express")
 
 const materias = require("./routes/materias")
+const cursos = require("./routes/cursos")
 
 const app = express()
 
@@ -17,6 +17,7 @@ app.get("/api", (req, res) => {
   });
 })
 
-app.use("/api", materias)
+app.use("/api/materias", materias)
+app.use("/api/cursos", cursos)
 
 app.listen(3001, () => console.log("Server escuchando en 3001"))

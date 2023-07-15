@@ -1,9 +1,12 @@
 const {Router} = require("express")
-
-const {obtenerMaterias} = require("../controllers/materias")
+const {comprobarExistenciaCurso, comprobarExistenciaEspecialidad} = require("../middlewares/cursos")
+const {obtenerMaterias, obtenerMateriasPorCurso, obtenerMateriasPorEspecialidad} = require("../controllers/materias")
 
 const app = Router()
 
-app.get("/materias", obtenerMaterias)
+app.get("/", obtenerMaterias)
+app.get("/:curso", comprobarExistenciaCurso, obtenerMateriasPorCurso)
+app.get("/especialidad/:especialidad", comprobarExistenciaEspecialidad, obtenerMateriasPorEspecialidad)
+
 
 module.exports = app
